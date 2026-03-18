@@ -16,7 +16,9 @@ def main() -> None:
     songs = load_songs("data/songs.csv")
 
     # Starter example profile
-    #user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    # user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
+
+    # Testing profiles
     high_energy_pop = { # conflicting preferences for testing
         "genre": "pop",
         "mood": "moody", # testing how the system handles a mismatch in mood preference while having a strong genre match and high energy preference
@@ -56,20 +58,12 @@ def main() -> None:
 
         print("Top recommendations:\n")
         for song, score, reasons in recommendations:
+            # You decide the structure of each returned item.
+            # A common pattern is: (song, score, explanation)
             print(f"  {song['title']} - Score: {score:.2f}")
             print(f"  Because: {'; '.join(reasons)}")
             print()
 
-'''
-    print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, reasons = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {'; '.join(reasons)}")
-        print()
-'''
 
 if __name__ == "__main__":
     main()

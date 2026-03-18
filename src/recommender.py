@@ -47,8 +47,8 @@ class Recommender:
         reasons: List[str] = []
 
         if song.genre == user.favorite_genre:
-            score += 2.0
-            reasons.append("genre match (+2.0)")
+            score += 1.0
+            reasons.append("genre match (+1.0)")
         else:
             reasons.append("genre mismatch (+0.0)")
 
@@ -59,7 +59,7 @@ class Recommender:
             reasons.append("mood mismatch (+0.0)")
 
         energy_similarity = self._clamp01(1.0 - abs(song.energy - user.target_energy))
-        energy_points = 1.5 * energy_similarity
+        energy_points = 3.0 * energy_similarity
         score += energy_points
         reasons.append(f"energy similarity {energy_similarity:.2f} (+{energy_points:.2f})")
 
@@ -122,9 +122,9 @@ def _score_song_dict(
 ) -> Tuple[float, List[str]]:
     """Score a song dict based on user preferences and return score with explanation reasons."""
     weights = {
-        "genre": 2.0,
+        "genre": 1.0,
         "mood": 2.5,
-        "energy": 1.5,
+        "energy": 3.0,
         "tempo_bpm": 1.5,
         "valence": 1.0,
         "danceability": 1.0,

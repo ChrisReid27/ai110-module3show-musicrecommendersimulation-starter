@@ -115,7 +115,14 @@ Tempo similarity depends on min/max tempo in the catalog. If catalog range shift
 ---
 
 ## Results
+1. Original CLI
 ![alt text](<../../../Pictures/Screenshots/Screenshot 2026-03-18 115405.png>)
+2. Conflicting Preferences Test Profile
+![alt text](<Screenshot 2026-03-18 131333.png>)
+3. Fully Minimized All Values Test Profile
+![alt text](<Screenshot 2026-03-18 131425.png>)
+4. Unusual or Rare Combination Test Profile
+![alt text](<../../../Pictures/Screenshots/Screenshot 2026-03-18 131507.png>)
 
 ---
 
