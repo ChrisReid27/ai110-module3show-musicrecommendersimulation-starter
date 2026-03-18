@@ -178,6 +178,11 @@ def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tup
     Functional implementation of the recommendation logic.
     Required by src/main.py
     """
+    # Backward-compatibility with profile style used by the OOP API.
+    if "acousticness" not in user_prefs and "likes_acoustic" in user_prefs:
+        user_prefs = dict(user_prefs)
+        user_prefs["acousticness"] = 0.8 if bool(user_prefs["likes_acoustic"]) else 0.2
+
     tempos = [float(song["tempo_bpm"]) for song in songs if "tempo_bpm" in song and song["tempo_bpm"] != ""]
     min_tempo = min(tempos) if tempos else None
     max_tempo = max(tempos) if tempos else None
