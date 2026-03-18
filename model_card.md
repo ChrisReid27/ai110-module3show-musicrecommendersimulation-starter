@@ -2,8 +2,7 @@
 
 ## 1. Model Name  
 
-Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
+**Music Taste Discerner (MTD) Version 1.0**  
 
 ---
 
@@ -61,29 +60,13 @@ Prompts:
 
 ## 6. Limitations and Bias 
 
-Where the system struggles or behaves unfairly. 
-
-Prompts:  
-
-- Features it does not consider  
-- Genres or moods that are underrepresented  
-- Cases where the system overfits to one preference  
-- Ways the scoring might unintentionally favor some users  
+One weakness I found when the energy weight got doubled from 1.5 to 3.0 in the experiment was that the system became significantly more likely to group users into energy-based "bubbles." Users with extreme energy preferences (like preferring 0.2 or 0.9 on a 0-1 scale) will find it nearly impossible to discover songs outside their range, since a mismatch of 0.7 energy points now costs them 2.0 scoring points which is difficult to overcome even with a perfect genre and mood match. This reveals that the system over-prioritizes energy similarity in a way that locks users into narrow recommendation bands (which happened with genre before the shift), particularly disadvantaging low-energy and acoustic music listeners (only 2 songs with energy <=0.3 vs. 11 songs with energy >=0.7).
 
 ---
 
 ## 7. Evaluation  
 
-How you checked whether the recommender behaved as expected. 
-
-Prompts:  
-
-- Which user profiles you tested  
-- What you looked for in the recommendations  
-- What surprised you  
-- Any simple tests or comparisons you ran  
-
-No need for numeric metrics unless you created some.
+I checked if the recommender was behaving as expected by running three different listener profiles and checking whether the top songs felt reasonable to me. One profile was a high-energy pop listener who wanted very energetic music and didn't like acoustic songs. In that case, Night Drive Loop was their top song before and after weight shifting even though the scores were different (Before: 4.26, After: 5.54) because it has very high energy, and after my weight-shift experiment energy became one of the strongest parts of the score. MTD started mainly focusing on energy similarity more than before, so songs with matching energy were pushed up even when other traits were not perfect matches. This helped me confirm the model was working as coded, but also that the ranking can become repetitive for users with extreme energy preferences.
 
 ---
 
